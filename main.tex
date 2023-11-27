@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\setlength{\parindent}{1cm}
+\usepackage{graphicx}
+\usepackage{attachfile2}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+
+\begin{document}
+
+\begin{titlepage}
+
+    \centering
+    \vspace*{8cm}
+
+     \Large {\bfseries Relatório: Análise de Componentes Principais (PCA) na Base de Dados sobre os tipos da flor Íris}\\
+
+    \vspace{1cm}
+    \Large 2º Ciclo - Ciência de Dados
+    
+    \vspace{0.5cm}
+    \Large Ana Luiza Ribeiro de Santana da Silva
+
+    \Large Rebeca Nascimento Oliveira 
+    
+    \vspace{1cm}
+    \Large Novembro, 2023
+    
+
+\end{titlepage}
+
+\section*{Introdução}
+
+Neste relatório, será apresentada uma análise utilizando A Análise de Componentes Principais (PCA) para obter informações detalhadas sobre três diferentes espécies de flores de íris. O PCA emerge como uma ferramenta crucial nesse contexto, possibilitando a simplificação e interpretação eficiente de conjuntos de dados multidimensionais. Ao aplicar o PCA a esta base de dados, podemos extrair os componentes principais que melhor capturam a variação presente nas medidas de sépalas e pétalas, proporcionando uma visão mais clara e concisa das características distintivas entre as diferentes espécies de íris. Essa abordagem não apenas facilita a visualização dos dados, mas também destaca as características mais influentes na classificação das flores, contribuindo para uma compreensão mais profunda dos padrões subjacentes.
+
+\vspace*{1cm}
+
+\section*{Descrição da Base de Dados}
+
+A base de dados utilizada foi adquirida a partir de um conjunto de dados proveniente da University of California - Irvine, uma instituição de ensino superior localizada nos Estados Unidos. Esta base de dados consiste em informações qualitativas e foi obtida diretamente do site UCI Machine Learning Repository.
+
+A base de dados compreendia as medidas de comprimento e largura da sépala em centímetros, bem como as medidas de comprimento e largura da pétala em centímetros. Com base nas dimensões da largura e do comprimento, a classificação das amostras podia ser atribuída a uma das três classes: Iris Setosa, Iris Versicolour ou Iris Virginica.
+
+\vspace*{1cm}
+
+\section*{Dimensão dos Dados}
+
+\begin{itemize}
+\item Número de instâncias: 150 instâncias distribuídas igualmente em 3 classes, onde cada classe representa um tipo de flores de íris.
+\item Número de atributos: 4 atributos numéricos e preditivos, além da classe. Sendo o comprimento da sépala em cm, a largura da sépala em cm, o comprimento da pétala em cm e a largura da pétala em cm.
+\item Distribuição de classes: Iris Setosa, Iris Versicolor e Iris Virginica.
+\end{itemize}
+
+\vspace*{1cm}
+
+\section*{Matriz de Covariância}
+
+A matriz de covariância é uma métrica estatística que caracteriza a interdependência entre as variáveis em um conjunto de dados, sendo calculada para revelar as correlações entre suas características. A seguir está a Matriz Quadrada Reduzida da Matriz de Covariância:
+
+\[
+\begin{bmatrix}
+0.17599681 & -0.01089153 & 0.32707828 & 0.13251109 \\
+-0.01089153 & 0.04876198 & -0.08461283 & -0.03122115 \\
+0.32707828 & -0.08461283 & 0.7998544 & 0.3325438 \\
+ 0.13251109 & -0.03122115 & 0.3325438 & 0.14912676 \\
+\end{bmatrix}
+\]
+
+\vspace*{1cm}
+
+\subsection*{Autovalores e Autovetores}
+
+Os autovalores e autovetores são derivados da matriz de covariância, oferecendo insights sobre as direções primárias dos dados e suas relevâncias relativas. Os autovetores representam vetores que delineiam as direções principais, também conhecidas como componentes principais, enquanto os autovalores associados indicam a variância explicada por cada componente principal.
+Informações acerca dos dois maiores autovalores e autovetores:\\
+
+Autovalores:
+\[
+\begin{bmatrix}
+1.08526193 \\ 
+0.06228625 \\
+0.02007402 \\
+0.00611775 \\
+\end{bmatrix}
+\]
+
+Autovetores:
+\[
+\begin{bmatrix}
+0.36138659 & -0.65658877 & -0.58202985 &  0.31548719 \\
+-0.08452251 & -0.73016143 & 0.59791083 & -0.3197231 \\
+0.85667061 & 0.17337266 & 0.07623608 & -0.47983899 \\
+0.3582892 & 0.07548102 & 0.54583143 & 0.75365743 \\
+\end{bmatrix}
+ \]
+ 
+Dois maiores autovalores:
+\[
+\begin{bmatrix}
+1.0852619299728725 \\
+0.06228625101282653 \\
+\end{bmatrix}
+\]
+
+Dois maiores autovetores:
+\[
+\begin{bmatrix}
+0.36138659 & -0.08452251 & 0.85667061 & 0.3582892 \\
+-0.65658877 & -0.73016143 & 0.17337266 & 0.07548102 \\
+\end{bmatrix}
+\]
+
+\vspace*{1cm}
+
+\section*{Resultados Obtidos}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{plot_pca.png}
+  \caption{\label{fig:frog}Elaborado no Google Colab pelos autores}
+\end{figure}
+
+A plotagem resultante do PCA revelou uma notável concentração dos pontos roxos (associados à íris setosa) no lado esquerdo, estando próximos uns dos outros. Por outro lado, os pontos verdes (correspondentes à íris versicolor) mostraram-se um pouco mais dispersos em relação aos pontos roxos, e apresentaram algumas sobreposições com os pontos amarelos (correspondentes à íris virginica). Essa observação sugere que as características calculadas demonstram uma marcante capacidade discriminativa para distinguir a íris setosa da versicolor e da virginica, uma vez que as íris versicolor e virginica tendem a ser mais semelhantes entre si do que à íris setosa.
+
+As características utilizadas para a análise incluem o comprimento da sépala em cm, a largura da sépala em cm, o comprimento da pétala em cm e a largura da pétala em cm. Essas características foram calculadas com base em imagens das íris e foram selecionadas por sua relevância na distinção entre Iris Setosa, Iris Versicolor e Iris Virginica.
+
+Essa análise se revela valiosa para aprimorar a categorização das espécies de íris, pois oferece uma compreensão mais profunda das características distintivas entre as diferentes classes de flores. Através da redução de dimensionalidade proporcionada pelo PCA, é viável obter uma representação visual dos dados, simplificando a interpretação e influenciando positivamente na tomada de decisões no contexto da classificação das íris em categorias como Iris Setosa, Iris Versicolor e Iris Virginica. Essa metodologia possibilita a identificação das direções principais de variação nos dados, realçando características fundamentais para a diferenciação entre as espécies de íris.
+
+\vspace{1cm}
+
+\section*{Conclusão}
+
+Em conclusão, a análise utilizando o PCA revelou padrões distintos nas características das íris, evidenciando a notável capacidade discriminativa das medidas da sépala e pétala. A concentração dos pontos roxos (Iris Setosa) contrastando com a dispersão dos pontos verdes (Iris Versicolor) e sobreposições com os pontos amarelos (Iris Virginica) destaca a utilidade dessas características na diferenciação entre as espécies. 
+
+Dessa forma, esta abordagem revela-se valiosa para aprimorar a categorização das espécies de íris, proporcionando uma compreensão mais profunda das características distintivas. A representação visual facilitada pela redução de dimensionalidade do PCA simplifica a interpretação, tornando-se uma ferramenta eficaz na tomada de decisões no contexto da classificação das flores. Ao identificar as principais direções de variação nos dados, destaca-se a importância dessas características fundamentais para a diferenciação precisa entre as espécies, contribuindo assim para avanços na área de classificação botânica.
+
+\vspace*{1cm}
+
+\section*{Referências}
+\begin{itemize}
+\item Link do código-fonte no GitHub:\\ \url{https://github.com/rebeca-nascimento/pca-iris-dataset}. \\
+\item Link para a base de dados disponível no site da UCI:\\ \url{https://archive.ics.uci.edu/dataset/53/iris}.
+\end{itemize}
+
+\end{document}
